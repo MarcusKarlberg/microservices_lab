@@ -3,7 +3,7 @@ Testing microservices with spring-boot. Using an API Gateway, Naming Server with
 
 Each Service has a Dockerfile that must be built manually, before running docker-compose up, since the images are not on docker hub.
 
-REST Calls:
+REST Calls:  
 http://localhost:8765/user-service/users  
 http://localhost:8765/booking-service/events  
 http://localhost:8765/location-service/locations  
