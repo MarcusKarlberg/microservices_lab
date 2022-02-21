@@ -1,0 +1,86 @@
+version: '3.7'
+
+services:
+  naming-server:
+    image: naming-server
+    mem_limit: 700m
+    ports:
+      - "8761:8761"
+    networks:
+      - service-network
+      
+  api-gateway:
+    image: api-gateway
+    mem_limit: 700m
+    ports:
+      - "8765:8765"
+    networks:
+      - service-network
+    depends_on:
+      - naming-server
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+      
+  user-service:
+    image: user-service
+    mem_limit: 700m
+    ports:
+      - "8003:8003"
+    networks:
+      - service-network
+    depends_on:
+      - naming-server
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+
+  booking-service:
+    image: booking-service
+    mem_limit: 700m
+    ports:
+      - "8002:8002"
+    networks:
+      - service-network
+    depends_on:
+      - naming-server
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+
+  location-service:
+    image: location-service
+    mem_limit: 700m
+    ports:
+      - "8005:8005"
+    networks:
+      - service-network
+    depends_on:
+      - naming-server
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+    
+  billing-service:
+    image: billing-service
+    mem_limit: 700m
+    ports:
+      - "8006:8006"
+    networks:
+      - service-network
+    depends_on:
+      - naming-server
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+    
+  exchange-service:
+    image: exchange-service
+    mem_limit: 700m
+    ports:
+      - "8008:8008"
+    networks:
+      - service-network
+    depends_on:
+      - naming-server
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+
+networks:
+  service-network:
+  
