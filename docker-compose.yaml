@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   naming-server:
-    image: naming-server
+    image: marcuskarlberg/naming-server
     mem_limit: 700m
     ports:
       - "8761:8761"
@@ -10,7 +10,7 @@ services:
       - service-network
       
   api-gateway:
-    image: api-gateway
+    image: marcuskarlberg/api-gateway
     mem_limit: 700m
     ports:
       - "8765:8765"
@@ -22,7 +22,7 @@ services:
       EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
       
   user-service:
-    image: user-service
+    image: marcuskarlberg/user-service
     mem_limit: 700m
     ports:
       - "8003:8003"
@@ -34,7 +34,7 @@ services:
       EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
 
   booking-service:
-    image: booking-service
+    image: marcuskarlberg/booking-service
     mem_limit: 700m
     ports:
       - "8002:8002"
@@ -46,7 +46,7 @@ services:
       EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
 
   location-service:
-    image: location-service
+    image: marcuskarlberg/location-service
     mem_limit: 700m
     ports:
       - "8005:8005"
@@ -58,7 +58,7 @@ services:
       EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
     
   billing-service:
-    image: billing-service
+    image: marcuskarlberg/billing-service
     mem_limit: 700m
     ports:
       - "8006:8006"
@@ -70,7 +70,7 @@ services:
       EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
     
   exchange-service:
-    image: exchange-service
+    image: marcuskarlberg/exchange-service
     mem_limit: 700m
     ports:
       - "8008:8008"
